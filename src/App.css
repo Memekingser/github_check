@@ -1,3 +1,10 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
 .App {
   text-align: center;
 }
@@ -35,4 +42,28 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* 覆盖react-toastify的一些默认样式 */
+.Toastify__toast {
+  border-radius: 6px !important;
+}
+
+.Toastify__toast--error {
+  background-color: #ffe8e8 !important;
+  color: #cf222e !important;
+}
+
+.Toastify__toast--success {
+  background-color: #e6ffec !important;
+  color: #1a7f37 !important;
 }

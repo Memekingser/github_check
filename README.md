@@ -1,46 +1,56 @@
-# Getting Started with Create React App
+# GitHub贡献者Twitter检测工具
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+这是一个React应用，用于检查GitHub仓库贡献者是否在其个人资料中提供了Twitter链接。
 
-## Available Scripts
+## 功能
 
-In the project directory, you can run:
+- 输入任意GitHub仓库链接
+- 自动获取该仓库的贡献者列表
+- 检查每个贡献者的个人资料中是否有Twitter链接
+- 显示带有Twitter链接的贡献者统计信息
+- 提供贡献者的直接链接到GitHub和Twitter
 
-### `npm start`
+## 技术栈
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- React
+- TypeScript
+- Styled Components
+- Axios
+- GitHub API
+- React Toastify
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 安装与运行
 
-### `npm test`
+1. 克隆此仓库:
+```bash
+git clone https://github.com/yourusername/github-contributors-twitter-checker.git
+cd github-contributors-twitter-checker
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. 安装依赖:
+```bash
+npm install
+```
 
-### `npm run build`
+3. 启动开发服务器:
+```bash
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. 在浏览器中访问 `http://localhost:3000`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 使用方法
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. 在输入框中输入一个GitHub仓库的URL，例如：`https://github.com/facebook/react`
+2. 点击"检查"按钮
+3. 应用将自动获取仓库的贡献者信息，并检查每个贡献者是否在GitHub个人资料中提供了Twitter链接
+4. 查看统计信息和每个贡献者的Twitter链接状态
 
-### `npm run eject`
+## 注意事项
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- GitHub API有速率限制，如果在短时间内多次请求，可能会遇到API限制
+- 该应用目前获取最多100名贡献者（GitHub API的每页限制）
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 许可证
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+MIT
