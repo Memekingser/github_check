@@ -639,11 +639,11 @@ function App() {
               <TwitterStatus status="active">
                 Twitter: <a 
                   href={`https://twitter.com/${contributor.twitter_username}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+          target="_blank"
+          rel="noopener noreferrer"
+        >
                   @{contributor.twitter_username}
-                </a>
+        </a>
               </TwitterStatus>
             ) : (
               <TwitterStatus status="inactive">
