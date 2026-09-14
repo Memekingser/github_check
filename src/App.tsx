@@ -149,6 +149,20 @@ function App() {
         setProgress({ phase: 'profiles', loaded: 0, total: list.length });
 
         let completed = 0;
+        const markRemaining = (errorLabel: string) => {
+          setContributors((prev) =>
+            prev.map((c) =>
+              c.loading
+                ? {
+                    ...c,
+                    loading: false,
+                    error: errorLabel,
+                  }
+                : c
+            )
+          );
+        };
+
         try {
           const finalRate = await enrichContributorProfiles(api, list, {
             concurrency: 5,
@@ -174,16 +188,21 @@ function App() {
             if (profileError.rateLimit) {
               setRateLimit(profileError.rateLimit);
             }
+            markRemaining('速率限制');
           } else if (
-            !axios.isCancel(profileError) &&
-            profileError?.name !== 'CanceledError' &&
-            profileError?.name !== 'AbortError'
+            axios.isCancel(profileError) ||
+            profileError?.name === 'CanceledError' ||
+            profileError?.name === 'AbortError'
           ) {
+            markRemaining('已取消');
+            throw profileError;
+          } else {
+            markRemaining('资料加载失败');
             throw profileError;
           }
         }
 
-        setProgress((p) => ({ ...p, phase: 'done' }));
+        setProgress((p) => ({ ...p, phase: 'done', loaded: list.length }));
       } catch (error: any) {
         if (
           axios.isCancel(error) ||
