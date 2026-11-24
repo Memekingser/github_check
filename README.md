@@ -1,55 +1,47 @@
-# GitHub贡献者Twitter检测工具
+# GitHub 贡献者 Twitter / X 检测工具
 
-这是一个React应用，用于检查GitHub仓库贡献者是否在其个人资料中提供了Twitter链接。
+React 应用：输入 GitHub 仓库，批量检查贡献者是否在个人资料中填写了 Twitter / X 用户名。
 
 ## 功能
 
-- 输入任意GitHub仓库链接
-- 自动获取该仓库的贡献者列表
-- 检查每个贡献者的个人资料中是否有Twitter链接
-- 显示带有Twitter链接的贡献者统计信息
-- 提供贡献者的直接链接到GitHub和Twitter
+- 支持完整仓库 URL 或 `owner/repo` 简写
+- 自动分页获取全部贡献者（不再限制在首屏 100 人）
+- 并发拉取用户资料（默认 5 路），展示进度条与可取消请求
+- 显示 GitHub API 剩余额度
+- 筛选（全部 / 有 X / 无 X）、排序、导出 CSV
+- 可选 Personal Access Token（Bearer，保存在 sessionStorage）
+- 支持分享链接：`?repo=owner/repo`
+
+> 说明：已移除浏览器直连 Twitter 的“账号是否存活”探测（CORS/重定向导致结果不可靠）。现在以 GitHub 资料字段为准。
 
 ## 技术栈
 
-- React
-- TypeScript
+- React + TypeScript
 - Styled Components
 - Axios
-- GitHub API
+- GitHub REST API
 - React Toastify
 
 ## 安装与运行
 
-1. 克隆此仓库:
-```bash
-git clone https://github.com/yourusername/github-contributors-twitter-checker.git
-cd github-contributors-twitter-checker
-```
-
-2. 安装依赖:
 ```bash
 npm install
-```
-
-3. 启动开发服务器:
-```bash
 npm start
 ```
 
-4. 在浏览器中访问 `http://localhost:3000`
+浏览器打开 `http://localhost:3000`。
 
 ## 使用方法
 
-1. 在输入框中输入一个GitHub仓库的URL，例如：`https://github.com/facebook/react`
-2. 点击"检查"按钮
-3. 应用将自动获取仓库的贡献者信息，并检查每个贡献者是否在GitHub个人资料中提供了Twitter链接
-4. 查看统计信息和每个贡献者的Twitter链接状态
+1. 输入仓库，例如 `https://github.com/facebook/react` 或 `facebook/react`
+2. （可选）在高级设置中填入 GitHub Token 以提高 API 额度
+3. 点击「检查」，等待贡献者列表与资料加载完成
+4. 使用筛选 / 排序查看结果，需要时可导出 CSV
 
 ## 注意事项
 
-- GitHub API有速率限制，如果在短时间内多次请求，可能会遇到API限制
-- 该应用目前获取最多100名贡献者（GitHub API的每页限制）
+- 未认证请求约 60 次/小时；大仓库建议使用 Token
+- 仅统计 GitHub 公开资料中的 `twitter_username` 字段
 
 ## 许可证
 
